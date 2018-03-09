@@ -6,7 +6,7 @@ email: huxpro@gmail.com
 description: ""
 keyword: ""
 url: "https://xsnailcoder.github.io"              # your host, for absolute URL
-baseurl: "/huxblog-boilerplate"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/xsnailcoder.github.io"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
