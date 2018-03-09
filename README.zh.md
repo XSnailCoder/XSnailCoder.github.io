@@ -1,4 +1,4 @@
-# Hux blog 模板
+<!-- # Hux blog 模板 -->
 
 ### [我的博客在这里](http://huxpro.github.io)
 
