@@ -194,7 +194,7 @@ tags:
 	    // 给系统NSObject类动态添加属性name
 	
 	    NSObject *objc = [[NSObject alloc] init];
-	    objc.name = @"小码哥";
+	    objc.name = @"小明";
 	    NSLog(@"%@",objc.name);
 	
 	}
