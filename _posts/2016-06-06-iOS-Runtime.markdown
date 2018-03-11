@@ -53,11 +53,11 @@ tags:
 每个类都有一个方法列表，存放着selector的名字和方法实现的映射关系。IMP有点类似函数指针，指向具体的Method实现
 
 我们先看看SEL与IMP之间的关系图：
-![](SEL与IMP.png)
+![ios](/img/ios/runtime/SEL与IMP.png)
 从上图可以看出来，每一个SEL与一个IMP一一对应，正常情况下通过SEL可以查找到对应消息的IMP实现。
 
 但是，现在我们要做的就是把链接线解开，然后连到我们自定义的函数的IMP上。当然，交换了两个SEL的IMP，还是可以再次交换回来了。交换后变成这样的，如下图
-![](SEL与IMP交换.png)
+![ios](img/ios/runtime/SEL与IMP交换.png)
 
 从图中可以看出，我们通过swizzling特性，将selectorC的方法实现IMPc与selectorN的方法实现IMPn交换了，当我们调用selectorC，也就是给对象发送selectorC消息时，所查找到的对应的方法实现就是IMPn而不是IMPc了
 
