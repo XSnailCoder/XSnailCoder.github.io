@@ -1,0 +1,141 @@
+---
+layout:     post
+title:      "ios 消息转发机制"
+subtitle:   "不适合人类阅读，非常水的自我笔记"
+date:       2016-6-14
+author:     "xsnailcoder"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - iOS
+    - runtime
+    
+---
+
+
+## iOS 消息转发
+
+
+本文就主要来介绍一下iOS系统的消息转发机制，探究一下在调用一个方法时，如果本类中没有该方法时，对象究竟是如何进行消息转发的，来避免程序抛出异常。
+### 异常现象
+默认情况下，如果是以[object message]的方式调用方法，如果object无法响应message消息时，编译器会报错。但如果是以perform…的形式来调用，则需要等到运行时才能确定object是否能接收message消息。如果不能，则程序崩溃。 
+
+
+> Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[Person eat]: unrecognized selector sent to instance 0x60800000a930'
+
+
+### 解决方法
+
+通常，当我们不能确定一个对象是否能接收某个消息时，会先调用respondsToSelector:来判断一下。如下代码所示
+
+
+	if([self respondsToSelector:@selector(method)]){
+	      [self performSelector:@selector(method)];
+	}
+	
+我们这边想讨论下不使用respondsToSelector:判断的情况,当一个对象无法接收某一消息时，就会启动所谓“消息转发(message forwarding)”机制，通过这一机制，我们可以告诉对象如何处理未知的消息。
+
+### 消息转发机制基本上分为三个步骤
+
+**1.动态方法解析**
+
+**2.备用接收者**
+
+**3.完整转发**
+
+#### 消息转发的流程图
+![ios](/img/ios/runtime/sendMessage.png)
+
+#### 1.动态方法解析
+对象在收到无法处理的消息时，会调用下面的方法，前者是调用类方法时会调用，后者是调用对象方法时会调用
+
+	//类方法专用
+	//+ (BOOL)resolveClassMethod:(SEL)sel
+	//对象方法专用
+	//+ (BOOL)resolveInstanceMethod:(SEL)sel
+
+在该方法中，需要给对象所属类动态的添加一个方法，并返回YES，表明可以处理
+
+	+ (BOOL)resolveInstanceMethod:(SEL)sel
+	{
+	    if ([NSStringFromSelector(sel) isEqualToString:@"eat"]) {
+	        /**
+	         @param self 给哪个类添加方法
+	         @param sel  添加方法的方法编号
+	         @param IMP  添加方法的函数实现（函数地址）是C语言的实现的
+	         @param 新添加的方法的类型，包含函数的返回值以及参数内容类型
+	         **/
+	        class_addMethod(self, sel, (IMP)eat, "v@:");
+	        return YES;
+	    }
+	    return NO;
+	}
+	
+	//函数实现
+	void eat(id self,SEL sel)
+	{
+	    printf("人在吃🍚\n");
+	}
+
+#### 2.备用接收者
+经历了第一步后，如果该消息还是无法处理，那么就会调用下面的方法，查询是否有其它对象能够处理该消息，在这个方法里，我们需要返回一个能够处理该消息的对象
+
+	- (id)forwardingTargetForSelector:(SEL)aSelector
+	{
+	    if ([@"eat" isEqualToString:NSStringFromSelector(aSelector)])
+	    {
+	        return [[Student alloc]init];
+	    }
+	    return [super forwardingTargetForSelector:aSelector];
+	}
+	
+Student类
+
+	@implementation Student
+	- (void)run {
+	    NSLog(@"学生在跑");
+	}
+	- (void)eat {
+        NSLog(@"学生在吃米");
+    }
+
+#### 3.完整转发
+
+如果在上一步还不能处理未知消息，则唯一能做的就是启用完整的消息转发机制了。 我们首先要通过,指定方法签名，若返回nil，则表示不处理。 如下代码
+
+
+	- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+	{
+	    ///为指定的方法手动生成签名
+	    if ([@"eat" isEqualToString:NSStringFromSelector(aSelector)]) {
+	        return [NSMethodSignature signatureWithObjCTypes:"v@:"];
+	    }
+	    return [super methodSignatureForSelector:aSelector];
+	}
+	
+	- (void)forwardInvocation:(NSInvocation *)anInvocation
+	{
+	    if ([self respondsToSelector:@selector(run)]) {
+	        //自己处理
+	        [anInvocation setSelector:@selector(run)];
+	        [anInvocation invokeWithTarget:self];
+	        return;
+	    } else {
+	        //将消息转发给Student对象
+	        Student *stu = [[Student alloc]init];
+	        if ([stu respondsToSelector:@selector(run)]) {
+	            [anInvocation invokeWithTarget:stu];
+	            [anInvocation setSelector:@selector(run)];
+	            return;
+	        }
+	    }
+	    //从继承树中查找
+	    [super forwardInvocation:anInvocation];
+	}
+	
+	- (void)run {
+	    NSLog(@"人在跑");
+	}
+
+
+
+
