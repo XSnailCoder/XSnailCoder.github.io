@@ -7,7 +7,7 @@ author:     "xsnailcoder"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
     - iOS
-    - runtime
+
     
 ---
 
