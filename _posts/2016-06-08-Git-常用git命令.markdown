@@ -1,6 +1,5 @@
 
 ---
-
 layout:     post
 title:      "git 常用命令"
 subtitle:   "不适合人类阅读，非常水的自我笔记"
@@ -10,10 +9,11 @@ header-img: "img/post-bg-unix-linux.jpg"
 tags:
     - git
     
+    
 ---
 
 
-### 常用git命令
+## 常用git命令
 1.初始化本地git环境
  
 * git init 
