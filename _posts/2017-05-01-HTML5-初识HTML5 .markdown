@@ -1,0 +1,54 @@
+---
+layout:     post
+title:      "初识HTML5"
+subtitle:   "不适合人类阅读，非常水的自我笔记"
+date:       2017-05-01
+author:     "xsnailcoder"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - HTML5
+---
+### 什么是HTML5 
+* HTML 其实是HyperText Markup language的缩写（超文本标记语言）
+
+* HTML作用：用来给文本添加描述语义的
+
+### HTML发展史
+![html5](/img/html5/htmlHistory.png)
+
+### HTML页面基本结构
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>第一个html</title>
+	</head>
+	<body>
+	
+	</body>
+	</html>
+
+### head标签
+
+作用：用于给网站添加一些配置信息
+
+* 例如：指定网站的标题/指定网站的小图片
+* 添加网站SEO相关信息，指定网站的关键字。指定网站的描述信息
+* 外挂一些外部的css/js文件
+* 添加一些浏览器适配相关内容
+
+注意：一般情况下写在Head标签内部的都不会显示给用户查看，
+
+### meta标签
+指定字符集
+
+### title标签
+作用： 指定网站的标题
+
+### body标签
+用于定义HTML文档中需要显示给用户查看的内容（如图片、文字、内容、视频）
+
+注意：一对HTML标签中只能有一对 body标签
+
+
+
