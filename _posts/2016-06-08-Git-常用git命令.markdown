@@ -1,15 +1,13 @@
 
 ---
 layout:     post
-title:      "git 常用命令"
+title:      "git常用命令"
 subtitle:   "不适合人类阅读，非常水的自我笔记"
 date:       2016-06-08
 author:     "xsnailcoder"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
-    - git
-    
-    
+    - git 
 ---
 
 
