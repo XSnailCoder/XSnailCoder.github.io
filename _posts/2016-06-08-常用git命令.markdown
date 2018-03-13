@@ -1,0 +1,120 @@
+
+---
+layout:     post
+title:      "git 常用命令"
+subtitle:   "不适合人类阅读，非常水的自我笔记"
+date:       2016-06-08
+author:     "xsnailcoder"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - git
+---
+
+
+### 常用git命令
+1.初始化本地git环境
+ 
+* git init 
+
+2.克隆一份代码到本地仓库
+ 
+* git clone XXX
+
+3.把远程库的代码更新到工作台
+ 
+* git pull 
+
+4.强制把远程库的代码更新到当前的分支上面
+ 
+* git pull --rebase origin master
+ 
+5.把远程库的代码更新到本地库
+ 
+* git fetch 
+ 
+6.把本地的修改加到stage中
+ 
+* git add .
+
+7.把stage中的修改提交到本地库
+
+* git commit -m "备注"
+
+8.把本地库的修改提交到远程库中
+ 
+* git push origin master
+
+9.查看远程分支/全部分支
+
+* git branch -r/-a
+
+10.切换到某个分支
+
+* git checkout master/branch 
+
+11.新建test分支
+
+* git checkout -b test
+
+12.删除test分支
+
+* git checkout -d test
+
+13.假设当前在test分支上面，把master分支上的修改同步到test分支上
+
+* git merge master
+
+14.调用merge工具
+
+* git merge tool
+
+15.把未完成的修改缓存到栈容器中
+
+* git stash
+
+16.查看所有的缓存
+
+* git stash list
+
+17.恢复本地分支到缓存状态
+
+* git stash pop
+
+18.查看某个文件的每一行的修改记录（）谁在什么时候修改
+
+* git blame someFile
+
+19.查看当前分支有哪些修改
+
+* git status
+
+20.查看当前分支上面的日志信息
+
+* git log
+
+21.查看当前没有add的内容
+
+* git diff
+
+22.查看已经add但是没有commit的内容
+
+* git diff --cache 
+
+23.上面两个内容的合并
+
+* git diff HEAD
+
+24.撤销本地修改
+
+* git reset --hard HEAD
+
+25.查看git config的HOME路径
+
+* echo $HOME
+
+26.配置git config的HOME路径
+
+* export $HOME=/c/gitconfig
+
+
+
