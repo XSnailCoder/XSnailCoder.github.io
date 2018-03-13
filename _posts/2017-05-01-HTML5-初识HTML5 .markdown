@@ -50,5 +50,51 @@ tags:
 
 注意：一对HTML标签中只能有一对 body标签
 
+## HTML5 标签分类  
+
+### 单标签
+
+    <meta charset="UTF-8">
+
+### 双标签 
+
+    <title>第一个html</title>
+
+### 标签关系分类
+* 并列关系（兄弟/平级）	head和 body
+	
+		<head>
+		    <meta charset="UTF-8">
+		    <title>第一个html</title>
+		</head>
+	    <body>
+	    </body>
+
+
+* 嵌套关系 (父子/上下级 ) head 和 meta
+
+		<head>
+			<meta charset="UTF-8">
+			<title>第一个html</title>
+		</head>
+		<body>
+		</body>
+		
+		
+			
+### DTD文档声明
+由于HTML有很多个版本规范，每个版本之间又有一定的差异，所有为了让浏览器能够正确的编译、解析、渲染我们的网页。我们需要在HTML第一行告诉浏览器，我们当前网页使用的那种HTML规范
+
+**HTML5 DTD文档声明** 
+
+向下兼容
+
+    <!DOCTYPE html>
+**注意：**
+
+* 任何一个标准的HTML网页，第一行一定是DTD文档声明，也就是说DTD文档声明必须写在HTM L的第一行
+* DTD文档声明不区分大小写
+* DTD文档声明不是一个标签
+* 虽然DTD文档声明的作用是用于告诉浏览器我们的网页是用哪一种版本的标准编写的以便于方便浏览器解析和渲染。但是浏览器并不是完全依赖这个声明，浏览器有一套自己的默认的处理机制
 
 
