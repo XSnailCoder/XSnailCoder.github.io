@@ -12,9 +12,9 @@ baseurl: "/xsnailcoder.github.io"         # for example, '/blog' if your blog ho
 
 # SNS settings
 RSS: false
-weibo_username:     xsnailcoder
-zhihu_username:     xsnailcoder
-github_username:    xsnailcoder
+# weibo_username:     xsnailcoder
+# zhihu_username:     xsnailcoder
+# github_username:    xsnailcoder
 # twitter_username:  xsnailcoder
 # facebook_username:  xsnailcoder
 
