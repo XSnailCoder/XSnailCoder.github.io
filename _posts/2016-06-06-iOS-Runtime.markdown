@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Runtime"
-subtitle:   "不适合人类阅读，非常水的自我笔记"
+subtitle:   ""
 date:       2016-06-06
 author:     "xsnailcoder"
 header-img: "img/post-bg-unix-linux.jpg"

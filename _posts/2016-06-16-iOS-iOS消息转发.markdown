@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "ios 消息转发机制"
-subtitle:   "不适合人类阅读，非常水的自我笔记"
+subtitle:   ""
 date:       2016-6-14
 author:     "xsnailcoder"
 header-img: "img/post-bg-unix-linux.jpg"

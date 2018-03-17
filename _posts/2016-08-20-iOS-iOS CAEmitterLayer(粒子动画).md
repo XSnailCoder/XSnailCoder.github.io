@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "iOS CAEmitterLayer(粒子动画)"
-subtitle:   "不适合人类阅读，非常水的自我笔记"
+subtitle:   ""
 date:       2016-8-20
 author:     "xsnailcoder"
 header-img: "img/post-bg-unix-linux.jpg"
