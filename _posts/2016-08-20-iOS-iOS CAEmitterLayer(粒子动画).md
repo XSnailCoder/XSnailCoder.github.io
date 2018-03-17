@@ -14,7 +14,7 @@ tags:
 
 ### 粒子动画的组成
 
-#### **CAEmitterLayer** 粒子发射器的属性(具体看示例代码)
+#### **CAEmitterLayer** 粒子发射器(具体看示例代码)
 
 * **emitterCells**  粒子单元数组，可以创建多个粒子单元负责不同效果
 * **emitterPosition** 发射的位置
